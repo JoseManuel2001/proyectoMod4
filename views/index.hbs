@@ -12,12 +12,56 @@
     <div class="main-layout">
         {{> lateralLayout}}
     </div>
+    <div class="main-page">
+        <div class="heder-top-information">
+            <div class="main-content">
+                {{> header}}
 
-    <div class="main-content">
-        {{> header}}
+            </div>
+            <div class="header-review">
 
+            </div>
+        </div>
+
+        <div class="page-inicio-container">
+            <form action="/weather" method="GET">
+
+                <input type="text" name="city" placeholder="Ingresa una ciudad" required>
+
+                <button type="submit">
+                    Buscar
+                </button>
+
+            </form>
+            {{#if weather}}
+
+            {{#if weather}}
+            <div class="weather-card">
+                <h2>{{weather.ciudad}}, {{weather.pais}}</h2>
+
+                <img src="{{weather.icono}}" alt="Icono del clima">
+
+                <p><strong>Temperatura:</strong> {{weather.temperatura}} °C</p>
+                <p><strong>Sensación:</strong> {{weather.sensacion}} °C</p>
+                <p><strong>Humedad:</strong> {{weather.humedad}}%</p>
+                <p><strong>Viento:</strong> {{weather.viento}} km/h</p>
+                <p><strong>Estado:</strong> {{weather.descripcion}}</p>
+                <p><strong>Astro:</strong> {{weather.astro}}</p>
+            </div>
+            {{/if}}
+
+            {{#if error}}
+            <p style="color:red;">{{error}}</p>
+            {{/if}}
+
+            {{/if}}
+            {{#if error}}
+            <div class="alert alert-danger">
+                {{error}}
+            </div>
+            {{/if}}
+        </div>
     </div>
-
 </body>
 
 </html>

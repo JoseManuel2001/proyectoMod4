@@ -24,43 +24,121 @@
         </div>
 
         <div class="page-inicio-container">
-            <form action="/weather" method="GET">
 
-                <input type="text" name="city" placeholder="Ingresa una ciudad" required>
+    <section class="weather-search-section">
+        <div class="weather-search-header">
+            <span class="weather-search-icon">
+                <i class="fa-solid fa-location-dot"></i>
+            </span>
 
-                <button type="submit">
-                    Buscar
-                </button>
-
-            </form>
-            {{#if weather}}
-
-            {{#if weather}}
-            <div class="weather-card">
-                <h2>{{weather.ciudad}}, {{weather.pais}}</h2>
-
-                <img src="{{weather.icono}}" alt="Icono del clima">
-
-                <p><strong>Temperatura:</strong> {{weather.temperatura}} °C</p>
-                <p><strong>Sensación:</strong> {{weather.sensacion}} °C</p>
-                <p><strong>Humedad:</strong> {{weather.humedad}}%</p>
-                <p><strong>Viento:</strong> {{weather.viento}} km/h</p>
-                <p><strong>Estado:</strong> {{weather.descripcion}}</p>
-                <p><strong>Astro:</strong> {{weather.astro}}</p>
+            <div>
+                <h2>Consulta el clima</h2>
+                <p>Ingresa una ciudad para conocer sus condiciones actuales.</p>
             </div>
-            {{/if}}
-
-            {{#if error}}
-            <p style="color:red;">{{error}}</p>
-            {{/if}}
-
-            {{/if}}
-            {{#if error}}
-            <div class="alert alert-danger">
-                {{error}}
-            </div>
-            {{/if}}
         </div>
+
+        <form action="/weather" method="GET" class="weather-form">
+            <div class="weather-input-container">
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    name="city"
+                    placeholder="Ejemplo: Toluca, México"
+                    autocomplete="off"
+                    required
+                >
+            </div>
+
+            <button type="submit">
+                <i class="fa-solid fa-cloud-sun"></i>
+                Buscar clima
+            </button>
+        </form>
+    </section>
+
+    {{#if weather}}
+        <section class="weather-card">
+            <div class="weather-card-header">
+                <div>
+                    <span class="weather-card-label">Clima actual</span>
+                    <h2>{{weather.ciudad}}, {{weather.pais}}</h2>
+                    <p>{{weather.descripcion}}</p>
+                </div>
+
+                <div class="weather-icon-container">
+                    <img
+                        src="{{weather.icono}}"
+                        alt="Icono del clima en {{weather.ciudad}}"
+                    >
+                </div>
+            </div>
+
+            <div class="weather-temperature">
+                <span>{{weather.temperatura}}</span>
+                <small>°C</small>
+            </div>
+
+            <div class="weather-details">
+                <article class="weather-detail">
+                    <div class="weather-detail-icon">
+                        <i class="fa-solid fa-temperature-half"></i>
+                    </div>
+
+                    <div>
+                        <span>Sensación</span>
+                        <strong>{{weather.sensacion}} °C</strong>
+                    </div>
+                </article>
+
+                <article class="weather-detail">
+                    <div class="weather-detail-icon">
+                        <i class="fa-solid fa-droplet"></i>
+                    </div>
+
+                    <div>
+                        <span>Humedad</span>
+                        <strong>{{weather.humedad}}%</strong>
+                    </div>
+                </article>
+
+                <article class="weather-detail">
+                    <div class="weather-detail-icon">
+                        <i class="fa-solid fa-wind"></i>
+                    </div>
+
+                    <div>
+                        <span>Viento</span>
+                        <strong>{{weather.viento}} km/h</strong>
+                    </div>
+                </article>
+
+                <article class="weather-detail">
+                    <div class="weather-detail-icon">
+                        <i class="fa-solid fa-sun"></i>
+                    </div>
+
+                    <div>
+                        <span>Astro</span>
+                        <strong>{{weather.astro}}</strong>
+                    </div>
+                </article>
+            </div>
+        </section>
+    {{/if}}
+
+    {{#if error}}
+        <div class="weather-alert">
+            <i class="fa-solid fa-circle-exclamation"></i>
+
+            <div>
+                <strong>No fue posible consultar el clima</strong>
+                <p>{{error}}</p>
+            </div>
+        </div>
+    {{/if}}
+
+</div>
     </div>
 </body>
 

@@ -7,12 +7,12 @@ const getWeather = async (city) => {
         const url = `http://api.weatherstack.com/current?access_key=${apiKey}&query=${encodeURIComponent(city)}`;
 
         const response = await axios.get(url);
+        console.log("API Response:", response.data);
 
         // Verificar si hubo un error en la API
         if (response.data.error) {
             throw new Error(response.data.error.info);
         }
-
         return {
             ciudad: response.data.location.name,
             pais: response.data.location.country,
@@ -23,7 +23,7 @@ const getWeather = async (city) => {
             humedad: response.data.current.humidity,
             viento: response.data.current.wind_speed,
             sensacion: response.data.current.feelslike,
-            astro: response.data.current.astro
+            astro: response.data.current.astro.sunrise + ' - ' + response.data.current.astro.sunset
         };
 
     } catch (error) {

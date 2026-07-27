@@ -197,6 +197,12 @@ body{
     padding: 10px;
 }
 
+.selected{
+    background-color: #160b7e;
+    border-radius: 10px;
+    color: rgb(98, 96, 207);
+}
+
 .header-links a{
     color: white;
     text-decoration: none;
